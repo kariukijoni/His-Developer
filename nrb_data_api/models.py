@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-from cities_light.models import Country,City
+from cities_light.models import Country,City,Region
 
 # Create your models here.
 
@@ -49,7 +49,7 @@ class BioData(models.Model):
     ethnicity=models.CharField(max_length=50)
     home_county = models.ForeignKey(City, max_length=50, on_delete=models.SET_NULL, null=True, blank=True,related_name='city_name')
     posta_address=models.ForeignKey(Address,max_length=100, on_delete=models.SET_NULL,null=True,related_name='town_name')
-    town_city= models.ForeignKey(City,max_length=100,  on_delete=models.SET_NULL, null=True, blank=True)
+    town_city= models.ForeignKey(Region,max_length=100,  on_delete=models.SET_NULL, null=True, blank=True)
     telephone_number = models.CharField(null=True, max_length=100, validators=[RegexValidator(r'^\d{3}-\d{3}-\d{4}$')])
     mobile_number = models.CharField(null=True, max_length=100, validators=[RegexValidator(r'^\d{3}-\d{3}-\d{4}$')])
     email_address=models.EmailField()
